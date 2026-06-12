@@ -98,14 +98,10 @@ if st.session_state.hp_text:
                 f"— {len(short_moves)} short WELDFEED move(s) found",
                 expanded=bool(short_moves)
             ):
-                st.caption(
-                    f"Checked {analysis['moves_checked']} G01/CIP move(s) under F=WELDFEED. "
-                    f"Total WELDFEED path length: {analysis['total_weld_length_mm']} mm. "
-                    "Moves under F=RAPIDFEED are not measured."
-                )
+                
                 if short_moves:
                     st.warning(
-                        f"{len(short_moves)} move(s) under F=WELDFEED are shorter than "
+                        f"{len(short_moves)} deposition move(s) shorter than "
                         f"{analysis['threshold']} mm:"
                     )
                     st.dataframe(
