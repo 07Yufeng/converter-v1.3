@@ -1,5 +1,5 @@
 import streamlit as st
-from converter_toolpath_v3 import convert_hp_to_mpf_text, get_conversion_report, normalize_power_head
+from converter_toolpath_v5 import convert_hp_to_mpf_text, get_conversion_report, normalize_power_head
 from toolpath_length_analysis import analyze_toolpath_lengths
 
 SHORT_MOVE_THRESHOLD_MM = 0.7
