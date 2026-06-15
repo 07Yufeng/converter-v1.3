@@ -52,6 +52,7 @@ if uploaded_file is not None:
 
 if st.button("Clear File"):
     st.session_state["uploader_key"] += 1
+    st.session_state.hp_text=""
     st.rerun()
 if power_head != st.session_state.last_power_head:
     st.session_state.last_power_head = power_head
