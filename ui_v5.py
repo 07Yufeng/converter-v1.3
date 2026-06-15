@@ -5,7 +5,7 @@ from toolpath_length_analysis import analyze_toolpath_lengths
 SHORT_MOVE_THRESHOLD_MM = 0.7
 
 st.set_page_config(page_title="HP/LST to MPF Converter", layout="wide")
-st.title("TRUMPF HP/LST to BEaM MPF Converter v1.3")
+st.title("TRUMPF HP/LST to BEaM MPF Converter v1.1")
 
 st.sidebar.header("Conversion Settings")
 power_head_label = st.sidebar.radio(
@@ -48,7 +48,11 @@ if uploaded_file is not None:
         st.session_state.mpf_text = ""
         st.session_state.report = None
         st.session_state.length_analysis = None
-
+if "uploader_key" not in st.session_state:
+    st.session_state["uploader_key"] = 0
+if st.button("Clear File"):
+    st.session_state["uploader_key"] += 1
+    st.rerun()
 if power_head != st.session_state.last_power_head:
     st.session_state.last_power_head = power_head
     st.session_state.mpf_text = ""
@@ -98,10 +102,14 @@ if st.session_state.hp_text:
                 f"— {len(short_moves)} short WELDFEED move(s) found",
                 expanded=bool(short_moves)
             ):
-                
+                st.caption(
+                    f"Checked {analysis['moves_checked']} G01/CIP move(s) under F=WELDFEED. "
+                    f"Total WELDFEED path length: {analysis['total_weld_length_mm']} mm. "
+                    "Moves under F=RAPIDFEED are not measured."
+                )
                 if short_moves:
                     st.warning(
-                        f"{len(short_moves)} deposition move(s) shorter than "
+                        f"{len(short_moves)} move(s) under F=WELDFEED are shorter than "
                         f"{analysis['threshold']} mm:"
                     )
                     st.dataframe(
