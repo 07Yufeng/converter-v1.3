@@ -5,7 +5,7 @@ from toolpath_length_analysis import analyze_toolpath_lengths
 SHORT_MOVE_THRESHOLD_MM = 0.7
 
 st.set_page_config(page_title="HP/LST to MPF Converter", layout="wide")
-st.title("TRUMPF HP/LST to BEaM MPF Converter v1.1")
+st.title("TRUMPF HP/LST to BEaM MPF Converter v1.3")
 
 st.sidebar.header("Conversion Settings")
 power_head_label = st.sidebar.radio(
