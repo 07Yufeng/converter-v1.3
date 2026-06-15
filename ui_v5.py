@@ -12,7 +12,7 @@ power_head_label = st.sidebar.radio(
     "Select laser power head",
     ["10Vx", "24Vx"],
     index=1,
-    help="This controls the PUIS_SET formula and BEaM gas settings."
+    help="Controls the PUIS_SET formula and BEaM gas settings."
 )
 power_head = normalize_power_head(power_head_label)
 st.sidebar.markdown("""
