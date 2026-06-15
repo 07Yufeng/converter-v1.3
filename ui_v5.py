@@ -21,8 +21,9 @@ st.sidebar.markdown("""
 - **10Vx**: `(POWER + 194.55) / 22.487`
 - **24Vx**: `(POWER + 165.73) / 21.832`
 """)
-
-uploaded_file = st.file_uploader("Upload original .HP or .LST file", type=["hp", "lst", "txt"])
+if "uploader_key" not in st.session_state:
+    st.session_state["uploader_key"] = 0
+uploaded_file = st.file_uploader("Upload original .HP or .LST file", type=["hp", "lst", "txt"],key=f"file_uploader_{st.session_state['uploader_key']}")
 
 if "hp_text" not in st.session_state:
     st.session_state.hp_text = ""
@@ -48,8 +49,7 @@ if uploaded_file is not None:
         st.session_state.mpf_text = ""
         st.session_state.report = None
         st.session_state.length_analysis = None
-if "uploader_key" not in st.session_state:
-    st.session_state["uploader_key"] = 0
+
 if st.button("Clear File"):
     st.session_state["uploader_key"] += 1
     st.rerun()
