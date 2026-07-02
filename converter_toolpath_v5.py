@@ -431,7 +431,7 @@ def is_motion_to_copy(code):
     c = strip_block_number(code)
     if is_power_ramp_motion(c):
         return False
-    return re.search(r"\b(G0[123]|CIP)\b", c, re.I) is not None
+    return re.search(r"\b(G0[0123]|CIP)\b", c, re.I) is not None
 
 def is_feed_assignment_to_copy(code):
     c = strip_block_number(code)
